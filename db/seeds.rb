@@ -8,11 +8,10 @@ require 'random_data'
 end
 users = User.all
 
- # Create Posts
+ # Create wikis
  50.times do
- # #1
    Wiki.create!(
- # #2
+     user: users.sample,
      title:  RandomData.random_sentence,
      body:   RandomData.random_paragraph,
      private: false
@@ -20,7 +19,11 @@ users = User.all
  end
  wikis = Wiki.all
 
-
+user = User.first
+user.update_attributes!(
+  email: 'malloryworks@gmail.com',
+  password: 'password'
+)
 
  puts "Seed finished"
  puts "#{User.count} users created"
