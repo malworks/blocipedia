@@ -1,5 +1,5 @@
 class WikisController < ApplicationController
-  before_action :require_sign_in, except: :show
+  before_action :require_sign_in, except: [:show, :index]
   before_action :authorize_user, only: [:destroy]
 
   def index
