@@ -2,8 +2,8 @@ require 'random_data'
 # create users
 5.times do
   User.create!(
-    email: RandomData.random_email,
-    password: RandomData.random_sentence
+    email: Faker::Internet.email,
+    password: Faker::Space.star + Faker::Internet.password
   )
 end
 users = User.all
@@ -12,8 +12,8 @@ users = User.all
  50.times do
    Wiki.create!(
      user: users.sample,
-     title:  RandomData.random_sentence,
-     body:   RandomData.random_paragraph,
+     title:  Faker::Hipster.sentence,
+     body:   Faker::Hipster.paragraphs(3),
      private: false
    )
  end
