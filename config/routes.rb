@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
+  get 'charges/create'
+
+  get 'charges_controller/create'
+
   resources :wikis
+
+  resources :charges, only: [:new, :create]
 
 #  get 'welcome/index'
 
