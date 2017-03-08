@@ -8,7 +8,10 @@ class WikisController < ApplicationController
 
   def show
     @wiki = Wiki.find(params[:id])
-      end
+    unless @wiki.private == false || current_user.role == 'admin' || current_user.role == 'premium'
+      flash[:alert] = 'You must upgrade your account to view private Wiki entries.'
+      redirect_to new_charge_path
+    end
   end
 
   def new
