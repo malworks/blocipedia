@@ -38,6 +38,8 @@ class ChargesController < ApplicationController
 
  def destroy
    current_user.standard!
+   wikis = Wiki.where(user_id: current_user)
+   wikis.update_all(private: false)
    redirect_to wikis_path
  end
 
