@@ -13,7 +13,7 @@
    </div>
    <div>
      <% if @wiki.private %>
-        <p><%= link_to "Add Collaborators", new_wiki_collaborator_path(@wiki), class: 'btn btn-default' %></p>
+          <p><%= link_to "Manage Collaborators", new_wiki_collaborator_path(@wiki), class: 'btn btn-success' %></p>
      <% end %>
     </div>
  </div>

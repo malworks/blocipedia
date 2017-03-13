@@ -1,27 +1,22 @@
 class CollaboratorsController < ApplicationController
   def index
-          @wiki = Wiki.find(params[:wiki_id])
-          @collaborators = @wiki.collaborators.all
-      end
+    @wiki = Wiki.find(params[:wiki_id])
+    @collaborators = @wiki.collaborators.all
+  end
 
-      def new
-          @wiki = Wiki.find(params[:wiki_id])
-      end
+  def new
+    @wiki = Wiki.find(params[:wiki_id])
+  end
 
-      def create
-          wiki = Wiki.find(params[:wiki_id])
-          collaborators = []
-          wiki.collaborators.destroy_all
-          if params[:collaborators]
-              params[:collaborators].each do |c|
-                  collaborators << {
-                      wiki_id: wiki.id,
-                      user_id: c
-                  }
-              end
-              Collaborator.create(collaborators)
-        end
+  def create
+    wiki = Wiki.find(params[:wiki_id])
+    @user = User.where('email LIKE ?', "%#{params[:search]}%").first
 
-          redirect_to wiki_collaborators_path(wiki)
-      end
+    if @collaborator.save
+      flash[:notice] = "Collaborator was saved."
+    else
+      flash.now[:alert] = "There was an error saving. Please try again."
+      render :new
+    end
+  end
 end
