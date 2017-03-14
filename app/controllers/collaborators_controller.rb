@@ -10,8 +10,6 @@ class CollaboratorsController < ApplicationController
 
   def create
     wiki = Wiki.find(params[:wiki_id])
-    @user = User.where('email LIKE ?', "%#{params[:search]}%").first
-
     if @collaborator.save
       flash[:notice] = "Collaborator was saved."
     else
