@@ -1,2 +1,12 @@
 <h2>Add collaborators to <%= @wiki.title %>:</h2>
 <p>There will be stuff here.</p>
+
+<%= form_for [@wiki, @collaborator] do |f| %>
+<div class="form-group">
+  <%= f.collection_select :user_id, User.all, :id, :email %>
+  <!-- <%= f.label :user_id %>
+  <%= f.text_field :user_id, class: 'form-control', placeholder: "Enter collaborator's email" %> -->
+<div class="form-group">
+  <%= f.submit "Save", class: 'btn btn-success' %>
+</div>
+<% end %>

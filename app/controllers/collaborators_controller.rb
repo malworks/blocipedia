@@ -6,10 +6,13 @@ class CollaboratorsController < ApplicationController
 
   def new
     @wiki = Wiki.find(params[:wiki_id])
+    @collaborator = Collaborator.new
   end
 
   def create
-    wiki = Wiki.find(params[:wiki_id])
+    @collaborator = Collaborator.new
+    @wiki = Wiki.find(params[:wiki_id])
+    @user_id = params[:collaborator][:user_id]
     if @collaborator.save
       flash[:notice] = "Collaborator was saved."
     else
